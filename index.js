@@ -4,8 +4,8 @@
 module.exports = function(robot) {
   robot.helpCommand("brobbot unsafe [me] `query`", "Googles `query` with SafeSearch turned off, and returns 1st image result's URL.");
 
-  robot.respond(/unsafe( me)? (.*)/i, function(msg) {
-    imageMe(msg, msg.match[3], function(url) {
+  robot.respond(/^unsafe( me)? (.*)/i, function(msg) {
+    imageMe(msg, msg.match[2], function(url) {
       msg.send(url);
     });
   });
