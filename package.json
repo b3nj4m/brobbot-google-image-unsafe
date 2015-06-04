@@ -1,6 +1,6 @@
 {
   "name": "brobbot-google-image-unsafe",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Brobbot plugin for unsafe image searches",
   "main": "index.js",
   "scripts": {
