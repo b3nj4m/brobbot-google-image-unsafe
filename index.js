@@ -1,5 +1,10 @@
 // Description:
 //   An unsafe way to interact with the Google Images API.
+//
+// Configuration:
+//   BROBBOT_GOOGLE_IMAGE_UNSAFE_REFERER - the referer URL to pass to the Google API
+
+var REFERER = process.env.BROBBOT_GOOGLE_IMAGE_UNSAFE_REFERER || 'https://npmjs.org/package/brobbot-google-image-unsafe';
 
 module.exports = function(robot) {
   robot.helpCommand("brobbot unsafe [me] `query`", "Googles `query` with SafeSearch turned off, and returns 1st image result's URL.");
@@ -21,6 +26,7 @@ function imageMe(msg, query, cb) {
 
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(q)
+    .header('Referer', REFERER)
     .get()(function(err, res, body) {
       var images = JSON.parse(body);
       images = images.responseData ? images.responseData.results : null;
